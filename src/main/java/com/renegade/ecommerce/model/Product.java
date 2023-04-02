@@ -23,6 +23,16 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
 
+    public Product(String name, String imageURL, double price, String description, Category category) {
+        super();
+        this.name =  name;
+        this.imageURL = imageURL;
+        this.price = price;
+        this.description = description;
+        this.category = category;
+
+    }
+
     public Integer getId() {
         return id;
     }
@@ -71,13 +81,4 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String name, String imageURL, double price, String description, Category category) {
-        super();
-        this.name =  name;
-        this.imageURL = imageURL;
-        this.price = price;
-        this.description = description;
-        this.category = category;
-
-    }
 }
