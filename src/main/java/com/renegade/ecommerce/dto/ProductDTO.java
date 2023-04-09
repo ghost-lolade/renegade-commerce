@@ -1,39 +1,25 @@
-package com.renegade.ecommerce.model;
+package com.renegade.ecommerce.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "Products")
-public class Product {
+public class ProductDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private @NotNull String name;
     private @NotNull String imageURL;
     private @NotNull double price;
     private @NotNull String description;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    Category category;
+    public ProductDTO() {
+    }
 
-    public Product(String name, String imageURL, double price, String description, Category category) {
-        super();
-        this.name =  name;
+    public ProductDTO(Integer id, String name, String imageURL, double price, String description, Integer categoryId) {
+        this.id = id;
+        this.name = name;
         this.imageURL = imageURL;
         this.price = price;
         this.description = description;
-        this.category = category;
-
-    }
-
-    public Product() {
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
@@ -76,12 +62,13 @@ public class Product {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
+    private @NotNull Integer categoryId;
 }
